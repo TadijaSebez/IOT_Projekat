@@ -1,0 +1,32 @@
+{
+    "DS1": {
+        "simulate": true
+    },
+    "DL": {
+        "simulate": true
+    },
+    "DUS1": {
+        "simulate": true
+    },
+    "DB": {
+        "simulate": true
+    },
+    "DPIR1": {
+        "simulate": true
+    },
+    "DMS": {
+        "simulate": true
+    },
+    "RPIR1": {
+        "simulate": true
+    },
+    "RPIR2": {
+        "simulate": true
+    },
+    "RDH1": {
+        "simulate": true
+    },
+    "RDH2": {
+        "simulate": true
+    }
+}
