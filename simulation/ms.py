@@ -26,21 +26,20 @@ class MS:
         password = ""
         for i in range(length):
             code = random.randint(0, 15)
-            match code:
-                case num if num in range(10):
-                    password += str(code)
-                case 10:
-                    password += "*"
-                case 11:
-                    password += "#"
-                case 12:
-                    password += "A"
-                case 13:
-                    password += "B"
-                case 14:
-                    password += "C"
-                case 15:
-                    password += "D"      
+            if code < 10:
+                password += str(code)
+            elif code == 10:
+                password += "*"
+            elif code == 11:
+                password += "#"
+            elif code == 12:
+                password += "A"
+            elif code == 13:
+                password += "B"
+            elif code == 14:
+                password += "C"
+            elif code == 15:
+                password += "D"      
         return password
     
     def should_stop(self):

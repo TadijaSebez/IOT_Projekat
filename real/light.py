@@ -4,6 +4,7 @@ import threading
 
 
 def loop(light):
+    GPIO.setmode(GPIO.BCM)
     GPIO.setup(light.pin, GPIO.OUT)
     while True:
         try:
