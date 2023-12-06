@@ -6,7 +6,7 @@ import threading
 def loop(dht):
     while True:
         code, humidity, temperature = dht.detect_values()
-        dht.callback(humidity, temperature, code)
+        dht.callback(humidity, temperature, code, dht.config)
         time.sleep(0.5)
         if dht.should_stop():
             break
@@ -14,6 +14,7 @@ def loop(dht):
 class DHT:
 
     def __init__(self, config, stop_event, callback):
+        self.config = config
         self.stop_event = stop_event
         self.callback = callback
         self.humidity = config["initial_humidity"] if "initial_humidity" in config else 50

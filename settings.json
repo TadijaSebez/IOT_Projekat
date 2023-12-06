@@ -1,33 +1,59 @@
 {
-    "DS1": {
-        "simulate": true
+    "mqtt": {
+        "hostname": "localhost",
+        "port": 1883
     },
-    "DL": {
-        "simulate": true,
-        "pin": 18
-    },
-    "DUS1": {
-        "simulate": true
-    },
-    "DB": {
-        "simulate": true
-    },
-    "DPIR1": {
-        "simulate": true
-    },
-    "DMS": {
-        "simulate": true
-    },
-    "RPIR1": {
-        "simulate": true
-    },
-    "RPIR2": {
-        "simulate": true
-    },
-    "RDH1": {
-        "simulate": true
-    },
-    "RDH2": {
-        "simulate": true
+    "devices": {
+        "DS1": {
+            "simulate": true,
+            "runs_on": "PI1",
+            "name": "Door Sensor"
+        },
+        "DL": {
+            "simulate": true,
+            "pin": 18,
+            "runs_on": "PI1",
+            "name": "Door Light"
+        },
+        "DUS1": {
+            "simulate": true,
+            "runs_on": "PI1",
+            "name": "Door Ultrasonic Sensor"
+        },
+        "DB": {
+            "simulate": true,
+            "runs_on": "PI1",
+            "name": "Door Buzzer"
+        },
+        "DPIR1": {
+            "simulate": true,
+            "runs_on": "PI1",
+            "name": "Door Motion Sensor"
+        },
+        "DMS": {
+            "simulate": true,
+            "runs_on": "PI1",
+            "name": "Door Membrane Switch"
+        },
+        "RPIR1": {
+            "simulate": true,
+            "runs_on": "PI1",
+            "name": "Room PIR 1"
+        },
+        "RPIR2": {
+            "simulate": true,
+            "runs_on": "PI1",
+            "name": "Room PIR 2"
+        },
+        "RDH1": {
+            "simulate": true,
+            "runs_on": "PI1",
+            "name": "Room DHT 1"
+        },
+        "RDH2": {
+            "simulate": true,
+            "runs_on": "PI1",
+            "name": "Room DHT 2"
+        }
     }
 }

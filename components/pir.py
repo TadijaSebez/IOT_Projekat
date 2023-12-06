@@ -1,8 +1,14 @@
 
-def pir_callback():
-    print("Motion detected")
+def start_pir(config, stop_event, publisher):
 
-def start_pir(config, stop_event):
+    def pir_callback(config):
+        if 'verbose' in config and config['verbose']:
+            print("Motion detected")
+        
+        payload = config
+        payload['detected'] = True
+        publisher.add_mesurement("Motion", payload)
+
     if config["simulate"]:
         print("Simulating pir")
         from simulation.pir import PIR

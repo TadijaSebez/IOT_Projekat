@@ -14,7 +14,7 @@ def loop(light):
         if command == "l":
             light.change_state()
         state = light.get_state()
-        light.callback(state)
+        light.callback(state, light.config)
         time.sleep(0.001)
         if light.should_stop():
             break
@@ -22,6 +22,7 @@ def loop(light):
 class Light:
 
     def __init__(self, config, stop_event, callback, pipe):
+        self.config = config
         self.stop_event = stop_event
         self.callback = callback
         self.pipe = pipe

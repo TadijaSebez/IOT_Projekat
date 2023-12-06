@@ -1,8 +1,14 @@
 
-def light_callback(state):
-    print("Light is", state)
+def start_light(config, stop_event, pipe, publisher):
 
-def start_light(config, stop_event, pipe):
+    def light_callback(state, config):
+        if 'verbose' in config and config['verbose']:
+            print("Light is", state)
+
+        payload = config
+        payload['state'] = state
+        publisher.add_mesurement("Light", payload)
+
     if config["simulate"]:
         print("Simulating light")
         from simulation.light import Light

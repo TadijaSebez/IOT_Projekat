@@ -7,7 +7,7 @@ def loop(pir):
     while True:
         detected = pir.detect_motion()
         if detected:
-            pir.callback()
+            pir.callback(pir.config)
         time.sleep(0.5)
         if pir.should_stop():
             break
@@ -15,6 +15,7 @@ def loop(pir):
 class PIR:
 
     def __init__(self, config, stop_event, callback):
+        self.config = config
         self.stop_event = stop_event
         self.callback = callback
 

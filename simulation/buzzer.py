@@ -2,9 +2,9 @@ import random
 import time
 import threading
 
-def buzzing_loop(stop_event, callback):
+def buzzing_loop(buzzer, stop_event, callback):
     while True:
-        callback()
+        callback(buzzer.config)
         time.sleep(0.5)
         if stop_event.is_set():
             break
@@ -31,6 +31,7 @@ def loop(buzzer):
 class Buzzer:
 
     def __init__(self, config, stop_event, callback, pipe):
+        self.config = config
         self.stop_event = stop_event
         self.callback = callback
         self.pipe = pipe
@@ -50,7 +51,7 @@ class Buzzer:
     
     def start_buzzing(self):
         self.buzzing_stop_event = threading.Event()
-        self.buzzing_thread = threading.Thread(target=buzzing_loop, args=(self.buzzing_stop_event, self.callback))
+        self.buzzing_thread = threading.Thread(target=buzzing_loop, args=(self, self.buzzing_stop_event, self.callback))
         self.buzzing_thread.start()
     
     def stop_buzzing(self):

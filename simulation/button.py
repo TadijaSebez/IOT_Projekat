@@ -7,7 +7,7 @@ def loop(button):
     while True:
         pressed = button.detect_press()
         if pressed is not None:
-            button.callback(pressed)
+            button.callback(pressed, button.config)
         time.sleep(0.5)
         if button.should_stop():
             break
@@ -15,6 +15,7 @@ def loop(button):
 class Button:
 
     def __init__(self, config, stop_event, callback):
+        self.config = config
         self.stop_event = stop_event
         self.callback = callback
         self.pressed = False

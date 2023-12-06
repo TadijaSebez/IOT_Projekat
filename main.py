@@ -10,24 +10,30 @@ from components.ms import start_ms
 from components.pir import start_pir
 from components.uds import start_uds
 
+from publisher import Publisher
 
 def load_config():
     with open("settings.json", "r") as f:
         return json.load(f)
     
 def start_all(config, stop_event, threads):
-    threads.append(start_button(config["DS1"], stop_event))
+    publisher = Publisher(config['mqtt'])
+    publisher.start_daemon()
+
+    config = config['devices']
+
+    threads.append(start_button(config["DS1"], stop_event, publisher))
     light_pipe_send, light_pipe_recv = Pipe()
-    threads.append(start_light(config["DL"], stop_event, light_pipe_recv))
-    threads.append(start_uds(config["DUS1"], stop_event))
+    threads.append(start_light(config["DL"], stop_event, light_pipe_recv, publisher))
+    threads.append(start_uds(config["DUS1"], stop_event, publisher))
     buzzer_pipe_send, buzzer_pipe_recv = Pipe()
-    threads.append(start_buzzer(config["DB"], stop_event, buzzer_pipe_recv))
-    threads.append(start_pir(config["DPIR1"], stop_event))
-    threads.append(start_ms(config["DMS"], stop_event))
-    threads.append(start_pir(config["RPIR1"], stop_event))
-    threads.append(start_pir(config["RPIR2"], stop_event))
-    threads.append(start_dht(config["RDH1"], stop_event))
-    threads.append(start_dht(config["RDH2"], stop_event))
+    threads.append(start_buzzer(config["DB"], stop_event, buzzer_pipe_recv, publisher))
+    threads.append(start_pir(config["DPIR1"], stop_event, publisher))
+    threads.append(start_ms(config["DMS"], stop_event, publisher))
+    threads.append(start_pir(config["RPIR1"], stop_event, publisher))
+    threads.append(start_pir(config["RPIR2"], stop_event, publisher))
+    threads.append(start_dht(config["RDH1"], stop_event, publisher))
+    threads.append(start_dht(config["RDH2"], stop_event, publisher))
 
     while True:
         command = input()

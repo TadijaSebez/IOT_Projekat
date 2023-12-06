@@ -1,11 +1,17 @@
 
-def button_callback(pressed):
-    if pressed:
-        print("Button pressed")
-    else:
-        print("Button released")
+def start_button(config, stop_event, publisher):
 
-def start_button(config, stop_event):
+    def button_callback(pressed, config):
+        if 'verbose' in config and config['verbose']:
+            if pressed:
+                print("Button pressed")
+            else:
+                print("Button released")
+
+        payload = config
+        payload['pressed'] = pressed
+        publisher.add_mesurement("Button", payload)
+
     if config["simulate"]:
         print("Simulating button")
         from simulation.button import Button

@@ -1,8 +1,14 @@
 
-def ms_callback(password):
-    print("Detected password", password)
+def start_ms(config, stop_event, publisher):
 
-def start_ms(config, stop_event):
+    def ms_callback(password, config):
+        if 'verbose' in config and config['verbose']:
+            print("Detected password", password)
+        
+        payload = config
+        payload['password'] = password
+        publisher.add_mesurement("Password", payload)
+
     if config["simulate"]:
         print("Simulating ms")
         from simulation.ms import MS

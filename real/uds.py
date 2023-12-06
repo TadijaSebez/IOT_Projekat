@@ -12,7 +12,7 @@ def loop(uds):
     while True:
         dist = uds.detect_distance()
         if dist is not None:
-            uds.callback(dist)
+            uds.callback(dist, uds.config)
         time.sleep(0.001)
         if uds.should_stop():
             break
@@ -20,6 +20,7 @@ def loop(uds):
 class UDS:
 
     def __init__(self, config, stop_event, callback):
+        self.config = config
         self.stop_event = stop_event
         self.callback = callback
         self.trig_pin = config["trig_pin"]

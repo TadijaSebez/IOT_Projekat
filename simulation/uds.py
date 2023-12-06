@@ -7,7 +7,7 @@ def loop(uds):
     while True:
         dist = uds.detect_distance()
         if dist is not None:
-            uds.callback(dist)
+            uds.callback(dist, uds.config)
         time.sleep(0.5)
         if uds.should_stop():
             break
@@ -15,6 +15,7 @@ def loop(uds):
 class UDS:
 
     def __init__(self, config, stop_event, callback):
+        self.config = config
         self.stop_event = stop_event
         self.callback = callback
         self.dist = config["initial_distance"] if "initial_distance" in config else 50

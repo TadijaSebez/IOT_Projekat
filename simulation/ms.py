@@ -7,7 +7,7 @@ def loop(ms):
     while True:
         password = ms.detect_password()
         if password is not None:
-            ms.callback(password)
+            ms.callback(password, ms.config)
         time.sleep(0.5)
         if ms.should_stop():
             break
@@ -15,6 +15,7 @@ def loop(ms):
 class MS:
 
     def __init__(self, config, stop_event, callback):
+        self.config = config
         self.stop_event = stop_event
         self.callback = callback
         self.max_length = config["maximum_length"] if "maximum_length" in config else 16

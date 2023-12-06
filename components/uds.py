@@ -1,8 +1,14 @@
 
-def uds_callback(distance):
-    print("Detected distance", distance)
+def start_uds(config, stop_event, publisher):
 
-def start_uds(config, stop_event):
+    def uds_callback(distance, config):
+        if 'verbose' in config and config['verbose']:
+            print("Detected distance", distance)
+        
+        payload = config
+        payload['distance'] = distance
+        publisher.add_mesurement("Distance", payload)
+
     if config["simulate"]:
         print("Simulating uds")
         from simulation.uds import UDS

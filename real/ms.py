@@ -18,7 +18,7 @@ def loop(ms):
     while True:
         password = ms.detect_password()
         if password != "":
-            ms.callback(password)
+            ms.callback(password, ms.config)
         time.sleep(0.001)
         if ms.should_stop():
             break
@@ -26,6 +26,7 @@ def loop(ms):
 class MS:
 
     def __init__(self, config, stop_event, callback):
+        self.config = config
         self.stop_event = stop_event
         self.callback = callback
         self.R1 = config["R1"]

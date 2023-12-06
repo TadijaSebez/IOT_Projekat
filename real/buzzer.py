@@ -6,7 +6,7 @@ def buzzing_loop(pin, stop_event, callback):
     GPIO.setup(pin, GPIO.OUT)
     while True:
         GPIO.output(pin, True)
-        callback()
+        callback(pin.config)
         time.sleep(0.001)
         GPIO.output(pin, False)
         time.sleep(0.001)
@@ -35,6 +35,7 @@ def loop(buzzer):
 class Buzzer:
 
     def __init__(self, config, stop_event, callback, pipe):
+        self.config = config
         self.stop_event = stop_event
         self.callback = callback
         self.pipe = pipe
