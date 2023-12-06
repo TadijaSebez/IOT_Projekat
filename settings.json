@@ -3,7 +3,7 @@
         "simulate": true
     },
     "DL": {
-        "simulate": false,
+        "simulate": true,
         "pin": 18
     },
     "DUS1": {

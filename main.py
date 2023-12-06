@@ -1,7 +1,14 @@
 import json
 import threading
 from multiprocessing import Pipe
-from starter import start_button, start_buzzer, start_dht, start_light, start_ms, start_pir, start_uds
+
+from components.button import start_button
+from components.buzzer import start_buzzer
+from components.dht import start_dht
+from components.light import start_light
+from components.ms import start_ms
+from components.pir import start_pir
+from components.uds import start_uds
 
 
 def load_config():
