@@ -1,11 +1,12 @@
 {
     "mqtt": {
-        "hostname": "localhost",
+        "hostname": "10.1.121.91",
         "port": 1883
     },
-    "devices": {
+    "PI1": {
         "DS1": {
             "simulate": true,
+            "pin": 17,
             "runs_on": "PI1",
             "name": "Door Sensor"
         },
@@ -22,13 +23,16 @@
         },
         "DB": {
             "simulate": true,
+            "pin": 17,
             "runs_on": "PI1",
             "name": "Door Buzzer"
         },
         "DPIR1": {
             "simulate": true,
+            "pin": 16,
             "runs_on": "PI1",
-            "name": "Door Motion Sensor"
+            "name": "Door Motion Sensor",
+            "verbose": true
         },
         "DMS": {
             "simulate": true,
@@ -45,15 +49,89 @@
             "runs_on": "PI1",
             "name": "Room PIR 2"
         },
-        "RDH1": {
+        "RDHT1": {
             "simulate": true,
             "runs_on": "PI1",
             "name": "Room DHT 1"
         },
-        "RDH2": {
+        "RDHT2": {
             "simulate": true,
             "runs_on": "PI1",
             "name": "Room DHT 2"
+        }
+    },
+    "PI2":{
+        "DS2": {
+            "simulate": true,
+            "runs_on": "PI2",
+            "name": "Door Sensor"
+        },
+        "DUS2": {
+            "simulate": true,
+            "runs_on": "PI2",
+            "name": "Door Ultrasonic Sensor"
+        },
+        "DPIR2": {
+            "simulate": true,
+            "runs_on": "PI2",
+            "name": "Door Motion Sensor"
+        },
+        "GDHT": {
+            "simulate": true,
+            "runs_on": "PI2",
+            "name": "Garage DHT"
+        },
+        "GLCD": {
+            "simulate": true,
+            "runs_on": "PI2",
+            "name": "Garage LCD"
+        },
+        "GSG": {
+            "simulate": true,
+            "runs_on": "PI2",
+            "name": "Gun Safe Gyro"
+        },
+        "RPIR3": {
+            "simulate": true,
+            "runs_on": "PI2",
+            "name": "Room PIR"
+        },
+        "RDHT3": {
+            "simulate": true,
+            "runs_on": "PI2",
+            "name": "Room DHT"
+        }
+    },
+    "PI3":{
+        "RPIR4": {
+            "simulate": true,
+            "runs_on": "PI3",
+            "name": "Room PIR"
+        },
+        "RDHT4": {
+            "simulate": true,
+            "runs_on": "PI3",
+            "name": "Room DHT"
+        },
+        "BB": {
+            "simulate": true,
+            "runs_on": "PI3",
+            "name": "Bedroom Buzzer"
+        },
+        "B4SD": {
+            "simulate": true,
+            "runs_on": "PI3",
+            "name": "Bedroom 4 Digit 7 Segment Display"
+        },
+        "BIR": {
+            "simulate": true,
+            "runs_on": "PI3",
+            "name": "Bedroom Infrared"
+        },
+        "BRGB": {
+            "simulate": true,
+            "runs_on": "PI3",
+            "name": "Bedroom RGB"
         }
     }
 }

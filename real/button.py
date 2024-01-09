@@ -4,6 +4,7 @@ import threading
 
 
 def loop(button):
+    GPIO.setmode(GPIO.BCM)
     GPIO.setup(button.pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     GPIO.add_event_detect(button.pin, GPIO.RISING, callback=lambda x: button.callback(True, button.config), bouncetime=100)
     GPIO.add_event_detect(button.pin, GPIO.FALLING, callback=lambda x: button.callbac(False, button.config), bouncetime=100)

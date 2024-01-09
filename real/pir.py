@@ -4,11 +4,13 @@ import threading
 
 
 def loop(pir):
+    GPIO.setmode(GPIO.BCM)
     GPIO.setup(pir.pin, GPIO.IN)
     GPIO.add_event_detect(pir.pin, GPIO.RISING, callback=lambda x: pir.callback(pir.config))
     while True:
         time.sleep(0.001)
         if pir.should_stop():
+            GPIO.setmode(GPIO.BCM)
             GPIO.remove_event_detect(pir.pin)
             break
 

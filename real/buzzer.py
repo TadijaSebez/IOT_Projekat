@@ -2,16 +2,18 @@ import RPi.GPIO as GPIO
 import time
 import threading
 
-def buzzing_loop(pin, stop_event, callback):
+def buzzing_loop(buzzer, pin, stop_event, callback):
+    GPIO.setmode(GPIO.BCM)
     GPIO.setup(pin, GPIO.OUT)
     while True:
         GPIO.output(pin, True)
-        callback(pin.config)
+        callback(buzzer.config)
         time.sleep(0.001)
         GPIO.output(pin, False)
         time.sleep(0.001)
         if stop_event.is_set():
             break
+    GPIO.cleanup()
 
 def loop(buzzer):
     while True:
@@ -56,7 +58,7 @@ class Buzzer:
     
     def start_buzzing(self):
         self.buzzing_stop_event = threading.Event()
-        self.buzzing_thread = threading.Thread(target=buzzing_loop, args=(self.pin, self.buzzing_stop_event, self.callback))
+        self.buzzing_thread = threading.Thread(target=buzzing_loop, args=(self, self.pin, self.buzzing_stop_event, self.callback))
         self.buzzing_thread.start()
     
     def stop_buzzing(self):
